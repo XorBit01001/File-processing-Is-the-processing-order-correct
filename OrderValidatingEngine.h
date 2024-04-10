@@ -19,10 +19,9 @@ public:
         auto dependencies = dependencyProvider.provideDependencies();
 
         // Read filenames from input
-        std::vector<std::string> filenames;
-        std::string filename;
-        while (input >> filename) {
-            filenames.push_back(filename);
+        std::vector<std::string> filenames(matcher.GetFilesCountInDirectory());
+        for(int i = 0; i < matcher.GetFilesCountInDirectory(); ++i){
+            input >> filenames[i];
         }
 
         // Create OrderValidator object for validating the order of filenames
