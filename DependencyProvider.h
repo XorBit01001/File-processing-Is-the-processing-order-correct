@@ -11,7 +11,9 @@ private:
     void processFile(const std::string& filename, std::unordered_set<std::string>& visited) {
         // Check if the file has already been visited to avoid infinite recursion
         if (visited.find(filename) != visited.end()) {
-            throw std::runtime_error("Circular include detected; file processing is terminated.");
+          return;
+          // std::cout << std::endl;
+          //   throw std::runtime_error("Circular include detected; file processing is terminated.");
         }
 
         // Add the file to visited set
@@ -69,7 +71,9 @@ public:
         while ((entry = readdir(dir)) != nullptr) {
             if (entry->d_type == DT_REG) { // Regular file
                 std::string filename(entry->d_name);
-                processFile(filename, visited);
+                if (visited.find(filename) == visited.end()){
+                    processFile(filename, visited);
+                }
             }
         }
 
