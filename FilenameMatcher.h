@@ -12,10 +12,10 @@ class FilenameMatcher {
 private:
     std::unordered_map<std::string, int> filenameToNumber;
     std::vector<std::string> numberToFilename;
-
+    int filesCountInDirectory;
 public:
     // Constructor to initialize the FilenameMatcher object
-    FilenameMatcher(const std::string& directoryPath) {
+    FilenameMatcher(const std::string& directoryPath):filesCountInDirectory(0) {
         DIR* dir = opendir(directoryPath.c_str());
         if (dir == nullptr) {
             throw std::runtime_error("Error opening directory");
@@ -32,10 +32,10 @@ public:
             }
         }
         closedir(dir);
-
         if (index == 0) {
             throw std::runtime_error("No files found in the directory");
         }
+      filesCountInDirectory = index;
     }
 
     // Function to get the number corresponding to a filename
@@ -52,5 +52,8 @@ public:
             return numberToFilename[number];
         }
         throw std::out_of_range("Number out of range");
-    }
+  }
+  int GetFilesCountInDirectory() const {
+    return filesCountInDirectory;
+  }
 };
