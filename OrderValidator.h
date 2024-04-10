@@ -3,9 +3,9 @@
 
 class OrderValidator {
 private:
-    const std::unordered_map<int, std::unordered_set<int>>& dependencies;
+    const std::unordered_map<int, std::unordered_set<int> >& dependencies;
 public:
-    OrderValidator(const std::unordered_map<int, std::unordered_set<int>>& deps) : dependencies(deps) {}
+    OrderValidator(const std::unordered_map<int, std::unordered_set<int> >& deps) : dependencies(deps) {}
 
     bool isOrderCorrect(const std::vector<std::string>& filenames) const {
         std::unordered_map<std::string, int> filenameToIndex;

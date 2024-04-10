@@ -5,7 +5,7 @@ class DependencyProvider {
 private:
     const std::string directoryPath;
     const FilenameMatcher& filenameMatcher;
-    std::unordered_map<int, std::unordered_set<int>> dependencies;
+    std::unordered_map<int, std::unordered_set<int> > dependencies;
 
     // Function to process each file recursively and find dependencies
     void processFile(const std::string& filename, std::unordered_set<std::string>& visited) {
@@ -54,7 +54,7 @@ public:
     DependencyProvider(const std::string& path, const FilenameMatcher& matcher) : directoryPath(path), filenameMatcher(matcher) {}
 
     // Provide dependencies between file numbers
-    std::unordered_map<int, std::unordered_set<int>> provideDependencies() {
+    std::unordered_map<int, std::unordered_set<int> > provideDependencies() {
         // Initialize visited set
         std::unordered_set<std::string> visited;
 
